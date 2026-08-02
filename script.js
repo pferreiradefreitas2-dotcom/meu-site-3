@@ -1,42 +1,54 @@
+// Lista expandida de ideias no nicho de jogos e tecnologia
 const ideias = [
-  "Tutorial rápido sobre otimização de notebook",
-  "Comparativo de desempenho antes e depois",
-  "Dicas para aumentar FPS em jogos",
-  "Como criar thumbnails chamativas",
-  "Melhores apps para editar vídeos no celular",
-  "Transforme seu setup com luzes neon"
+  "Review de consoles da nova geração",
+  "Top 5 jogos indies de 2026",
+  "Comparação de placas de vídeo para gamers",
+  "História dos jogos retrô",
+  "Testando acessórios gamer (headsets, teclados)",
+  "Como montar um PC gamer econômico",
+  "Tendências em realidade virtual",
+  "Os melhores mods para jogos populares",
+  "Impacto da IA nos jogos modernos",
+  "Dicas para streamers iniciantes",
+  "Explorando jogos mobile inovadores",
+  "Análise de serviços de cloud gaming",
+  "Comparação entre Xbox Game Pass e PS Plus",
+  "Jogos que marcaram a década",
+  "Tecnologias gráficas: Ray Tracing explicado",
+  "Como escolher o melhor monitor gamer",
+  "O futuro dos eSports",
+  "Jogos educativos com foco em tecnologia",
+  "Testando periféricos gamer acessíveis",
+  "Entrevista com desenvolvedores independentes",
+  "Os melhores jogos cooperativos online",
+  "Explorando engines de jogos (Unity, Unreal)",
+  "Segurança digital para gamers",
+  "Realidade aumentada aplicada em jogos",
+  "Top 10 jogos de estratégia",
+  "Comparação de desempenho entre GPUs",
+  "História dos MMORPGs",
+  "Como otimizar seu PC para jogos",
+  "Jogos que usam blockchain",
+  "O impacto da tecnologia 5G nos games"
 ];
 
-const roteiros = {
-  "Tutorial rápido sobre otimização de notebook":
-    "Introdução: Apresente o problema de lentidão.\nPasso 1: Mostre como limpar arquivos temporários.\nPasso 2: Ajuste configurações de energia.\nConclusão: Mostre o ganho de desempenho.",
-  "Comparativo de desempenho antes e depois":
-    "Introdução: Explique o objetivo do teste.\nParte 1: Mostre o notebook antes da otimização.\nParte 2: Mostre o notebook após ajustes.\nConclusão: Destaque a diferença de FPS.",
-  "Dicas para aumentar FPS em jogos":
-    "Introdução: Explique a importância do FPS.\nDica 1: Atualize drivers.\nDica 2: Ajuste gráficos.\nDica 3: Use programas de otimização.\nConclusão: Reforce os ganhos.",
-  "Como criar thumbnails chamativas":
-    "Introdução: Explique a importância da thumbnail.\nPasso 1: Escolha cores vibrantes.\nPasso 2: Use fontes legíveis.\nPasso 3: Adicione elementos visuais.\nConclusão: Mostre exemplos.",
-  "Melhores apps para editar vídeos no celular":
-    "Introdução: Explique a praticidade de editar no celular.\nApp 1: CapCut.\nApp 2: InShot.\nApp 3: VN.\nConclusão: Recomende o melhor para iniciantes.",
-  "Transforme seu setup com luzes neon":
-    "Introdução: Mostre um setup simples.\nPasso 1: Escolha cores de neon.\nPasso 2: Instale fitas LED.\nPasso 3: Ajuste iluminação.\nConclusão: Mostre o resultado final."
-};
+let usadas = [];
 
-let ideiaAtual = "";
-
-function gerarIdeia() {
-  ideiaAtual = ideias[Math.floor(Math.random() * ideias.length)];
-  document.getElementById('output').innerText = "💡 Ideia: " + ideiaAtual;
-  document.getElementById('roteiro').innerText = "📜 Roteiro:\n" + roteiros[ideiaAtual];
-  document.getElementById('capa').innerHTML = "";
-}
-
-function gerarCapa() {
-  if (!ideiaAtual) {
-    alert("Gere uma ideia primeiro!");
-    return;
+function novaIdeia() {
+  // Reset quando todas já foram usadas
+  if (usadas.length === ideias.length) {
+    usadas = [];
   }
-  // Placeholder de imagem (funciona offline)
-  const urlImagem = "https://via.placeholder.com/400x250.png?text=" + encodeURIComponent(ideiaAtual);
-  document.getElementById('capa').innerHTML = "🎨 Capa gerada:<br><img src='" + urlImagem + "' alt='Capa gerada'>";
+  
+  // Filtra apenas as ideias ainda não usadas
+  let restante = ideias.filter(i => !usadas.includes(i));
+  
+  // Sorteia uma ideia aleatória
+  let sorteio = restante[Math.floor(Math.random() * restante.length)];
+  
+  // Marca como usada
+  usadas.push(sorteio);
+  
+  // Exibe no site
+  document.getElementById("output").innerText = "💡 Ideia: " + sorteio;
 }
